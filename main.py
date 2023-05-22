@@ -25,6 +25,18 @@ local_css("style/style.css")
 lottie_doc = load_lottieurl("https://assets10.lottiefiles.com/packages/lf20_bYskKBq3WY.json")
 logo = Image.open("images/Logo.png")
 
+st.markdown(
+    """
+    <style>
+    .centered-image {
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 with open('models/covid_model.pickle', 'rb') as f:
     covid_model = pickle.load(f)
 
@@ -33,8 +45,14 @@ with st.container():
     with left:
         lottie.st_lottie(lottie_doc, height=350, width=350)
     with center:
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.empty()
+        with col2:
+            st.image(logo, caption=None, width=200, use_column_width=True, clamp=False)
+        with col3:
+            st.empty()
 
-        st.image(logo, caption=None, width=200, use_column_width=False, clamp=False)
         st.write("---")
         type = st.selectbox('Select the disease type', ('Select', 'Covid', 'Heart disease', 'Lung Cancer'))
 
