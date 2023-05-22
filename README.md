@@ -6,6 +6,8 @@
 ## 🛠️ How to Configure
 
 - Download the file using git code option.
+
+    <img src="images/CodeOption.png" alt="Alt Text" width="200" height="200">
 - Unzip the downloaded file.
 - Open Command Prompt in the directory.
 - Create a Virtual Environment using following command.
@@ -27,3 +29,6 @@
     ```
     streamlit run main.py
     ```
+
+  > **⚠️Note :**
+  > *Use Mozilla Firefox as the default browser to reduce the most of running issues.*
