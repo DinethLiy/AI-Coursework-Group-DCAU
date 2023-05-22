@@ -423,8 +423,14 @@ with st.container():
                                                                                               'BOT : Based on the given data, The patient is not a carrier of covid or that the test is inconclusive.')
                                                                                         if st.button("Refresh"):
                                                                                             st.experimental_rerun()
+        if (type == 'Heart disease'):
+            st.empty()
 
+        if (type == 'Lung Cancer'):
+            st.empty()
 
+        if (type == 'Other'):
+            st.empty()
 
     with right:
         st.empty()
