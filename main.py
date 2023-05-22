@@ -37,8 +37,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
+# Load Models to the code
 with open('models/covid_model.pickle', 'rb') as f:
     covid_model = pickle.load(f)
+
+with open('models/monkey_pox_model.pickle', 'rb') as f:
+    monkey_pox_model = pickle.load(f)
 
 with st.container():
     left, center, right = st.columns(3)
@@ -54,7 +58,7 @@ with st.container():
             st.empty()
 
         st.write("---")
-        type = st.selectbox('Select the disease type', ('Select', 'Covid', 'Heart disease', 'Lung Cancer'))
+        type = st.selectbox('Select the disease type', ('Select', 'Covid', 'Heart disease', 'Lung Cancer', 'Monkey Pox'))
 
         if(type == 'Select'):
             st.empty()
@@ -429,7 +433,7 @@ with st.container():
         if (type == 'Lung Cancer'):
             st.empty()
 
-        if (type == 'Other'):
+        if (type == 'Monkey Pox'):
             st.empty()
 
     with right:
