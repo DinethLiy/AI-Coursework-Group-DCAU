@@ -419,19 +419,23 @@ with st.container():
                                                                                     # Values 1-3 mean that the patient was diagnosed with covid in different degrees.
                                                                                     # 4 or higher means that the patient is not a carrier of covid or that the test is inconclusive.
 
-                                                                                    if (covid_pred <= 3):
-                                                                                        st.info(
-                                                                                              ':robot_face: : Based on the given data, The patient was diagnosed with covid in different degrees')
-                                                                                        if st.button("Refresh"):
-                                                                                            st.experimental_rerun()
+                                                                                    if (covid_pred == 1):
+                                                                                        st.error(
+                                                                                              ':robot_face: : Based on the given data, The patient was diagnosed with covid in extremely dangerous situation.')
+                                                                                    elif (covid_pred == 2):
+                                                                                        st.error(
+                                                                                              ':robot_face: : Based on the given data, The patient was diagnosed with covid in critical situation.')
+                                                                                    elif (covid_pred == 3):
+                                                                                        st.error(
+                                                                                              ':robot_face: : Based on the given data, The patient was diagnosed with covid')
 
                                                                                     elif (covid_pred >= 4):
-                                                                                        st.info(
+                                                                                        st.success(
                                                                                               ':robot_face: : Based on the given data, The patient is not a carrier of covid or that the test is inconclusive.')
-                                                                                        if st.button("Refresh"):
-                                                                                            st.experimental_rerun()
+                                                                                    else:
+                                                                                        st.error(':robot_face: : Unsupported Data !')
         if (type == 'Heart disease'):
-            st.empty()
+            st.balloons()
 
         if (type == 'Lung Cancer'):
             if (type == 'Lung Cancer'):
@@ -764,14 +768,227 @@ with st.container():
 
                                                                                 if lung_cancer_pred == 1:
                                                                                     st.error(
-                                                                                        ':robot_face: : You may have the lung canser based on the provided data.')
+                                                                                        ':robot_face: : You may have the lung caner based on the provided data.')
 
-                                                                                else:
+                                                                                elif lung_cancer_pred == 2:
                                                                                     st.success(
-                                                                                        ':robot_face: : You may not have the lung canser based on the provided data.')
+                                                                                        ':robot_face: : You may not have the lung caner based on the provided data.')
+                                                                                else:
+                                                                                    st.error(
+                                                                                        ':robot_face: : Unsupported Data !')
 
         if (type == 'Monkey Pox'):
-            st.empty()
+            st.write(':robot_face: : Select the relevant disease type.')
+            st.write(':male-office-worker: : Monkey Pox')
+            st.write(':robot_face: : Do you have any of this common diseases?')
+            Systemic_Illness = st.selectbox('Select the type of disease', ('Select',
+                                                                           'None',
+                                                                           'Fever',
+                                                                           'Swollen Lymph Nodes',
+                                                                           'Muscle Aches and Pain'))
+            Systemic_Illness_val = 0
+            Systemic_Illness_val_stat = False
+            if (Systemic_Illness == 'Select'):
+                st.empty()
+                Systemic_Illness_val_stat = False
+            elif (Systemic_Illness == 'None'):
+                Systemic_Illness_val = 0
+                st.write(
+                    f':male-office-worker: : None')
+                Systemic_Illness_val_stat = True
+            elif (Systemic_Illness == 'Fever'):
+                Systemic_Illness_val = 1
+                st.write(
+                    f':male-office-worker: : Fever')
+                Systemic_Illness_val_stat = True
+            elif (Systemic_Illness == 'Swollen Lymph Nodes'):
+                Systemic_Illness_val = 2
+                st.write(
+                    f':male-office-worker: : Swollen Lymph Nodes')
+                Systemic_Illness_val_stat = True
+            else:
+                Systemic_Illness_val = 3
+                st.write(
+                    f':male-office-worker: : Muscle Aches and Pain')
+                Systemic_Illness_val_stat = True
+
+
+            if (Systemic_Illness_val_stat):
+                st.write(':robot_face: : Do you have any rectal pain?')
+                Rectal_Pain = st.selectbox('Select the answer', ('Select', 'Yes', 'No'))
+                Rectal_Pain_val = 0
+                Rectal_Pain_val_stat = False
+                if (Rectal_Pain == 'Select'):
+                    st.empty()
+                    Rectal_Pain_val_stat = False
+                elif (Rectal_Pain == 'Yes'):
+                    Rectal_Pain_val = 1
+                    st.write(
+                        f':male-office-worker: : Yes')
+                    Rectal_Pain_val_stat = True
+                else:
+                    Rectal_Pain_val = 0
+                    st.write(
+                        f':male-office-worker: : No')
+                    Rectal_Pain_val_stat = True
+
+                if (Rectal_Pain_val_stat):
+                    st.write(':robot_face: : Do you feel any soreness in your throat?')
+                    Sore_throat = st.selectbox('Select the answer about throat', ('Select', 'Yes', 'No'))
+                    Sore_throat_val = 0
+                    Sore_throat_val_stat = False
+                    if (Sore_throat == 'Select'):
+                        st.empty()
+                        Sore_throat_val_stat = False
+                    elif (Sore_throat == 'Yes'):
+                        Sore_throat_val = 1
+                        st.write(
+                            f':male-office-worker: : Yes')
+                        Sore_throat_val_stat = True
+                    else:
+                        Sore_throat_val = 0
+                        st.write(
+                            f':male-office-worker: : No')
+                        Sore_throat_val_stat = True
+
+                    if (Sore_throat_val_stat):
+                        st.write(':robot_face: : Do you feel any Penile Oedema?')
+                        Penile_Oedema = st.selectbox('Select the answer about Penile Oedema', ('Select', 'Yes', 'No'))
+                        Penile_Oedema_val = 0
+                        Penile_Oedema_val_stat = False
+                        if (Penile_Oedema == 'Select'):
+                            st.empty()
+                            Penile_Oedema_val_stat = False
+                        elif (Penile_Oedema == 'Yes'):
+                            Penile_Oedema_val = 1
+                            st.write(
+                                f':male-office-worker: : Yes')
+                            Penile_Oedema_val_stat = True
+                        else:
+                            Penile_Oedema_val = 0
+                            st.write(
+                                f':male-office-worker: : No')
+                            Penile_Oedema_val_stat = True
+
+                        if (Penile_Oedema_val_stat):
+                            st.write(':robot_face: : Do you have Oral Lesions?')
+                            Oral_Lesions = st.selectbox('Select the answer about Oral Lesions',
+                                                         ('Select', 'Yes', 'No'))
+                            Oral_Lesions_val = 0
+                            Oral_Lesions_val_stat = False
+                            if (Oral_Lesions == 'Select'):
+                                st.empty()
+                                Oral_Lesions_val_stat = False
+                            elif (Oral_Lesions == 'Yes'):
+                                Oral_Lesions_val = 1
+                                st.write(
+                                    f':male-office-worker: : Yes')
+                                Oral_Lesions_val_stat = True
+                            else:
+                                Oral_Lesions_val = 0
+                                st.write(
+                                    f':male-office-worker: : No')
+                                Oral_Lesions_val_stat = True
+
+                            if (Oral_Lesions_val_stat):
+                                st.write(':robot_face: : Do you have Solitary Lesion?')
+                                Solitary_Lesion = st.selectbox('Select the answer about Solitary Lesion',
+                                                               ('Select', 'Yes', 'No'))
+                                Solitary_Lesion_val = 0
+                                Solitary_Lesion_val_stat = False
+                                if (Solitary_Lesion == 'Select'):
+                                    st.empty()
+                                    Solitary_Lesion_val_stat = False
+                                elif (Solitary_Lesion == 'Yes'):
+                                    Solitary_Lesion_val = 1
+                                    st.write(
+                                        f':male-office-worker: : Yes')
+                                    Solitary_Lesion_val_stat = True
+                                else:
+                                    Solitary_Lesion_val = 0
+                                    st.write(
+                                        f':male-office-worker: : No')
+                                    Solitary_Lesion_val_stat = True
+
+                                if (Solitary_Lesion_val_stat):
+                                    st.write(':robot_face: : Do you have Swollen Tonsils?')
+                                    Swollen_Tonsils = st.selectbox('Select the answer about Swollen Tonsils',
+                                                                   ('Select', 'Yes', 'No'))
+                                    Swollen_Tonsils_val = 0
+                                    Swollen_Tonsils_val_stat = False
+                                    if (Swollen_Tonsils == 'Select'):
+                                        st.empty()
+                                        Swollen_Tonsils_val_stat = False
+                                    elif (Swollen_Tonsils == 'Yes'):
+                                        Swollen_Tonsils_val = 1
+                                        st.write(
+                                            f':male-office-worker: : Yes')
+                                        Swollen_Tonsils_val_stat = True
+                                    else:
+                                        Swollen_Tonsils_val = 0
+                                        st.write(
+                                            f':male-office-worker: : No')
+                                        Swollen_Tonsils_val_stat = True
+
+                                    if (Swollen_Tonsils_val_stat):
+                                        st.write(':robot_face: : Do you have you ever infected HIV?')
+                                        HIV_Infection = st.selectbox('Select the answer about HIV Infection',
+                                                                       ('Select', 'Yes', 'No'))
+                                        HIV_Infection_val = 0
+                                        HIV_Infection_val_stat = False
+                                        if (HIV_Infection == 'Select'):
+                                            st.empty()
+                                            HIV_Infection_val_stat = False
+                                        elif (HIV_Infection == 'Yes'):
+                                            HIV_Infection_val = 1
+                                            st.write(
+                                                f':male-office-worker: : Yes')
+                                            HIV_Infection_val_stat = True
+                                        else:
+                                            HIV_Infection_val = 0
+                                            st.write(
+                                                f':male-office-worker: : No')
+                                            HIV_Infection_val_stat = True
+
+                                        if (HIV_Infection_val_stat):
+                                            st.write(':robot_face: : Do you have any Sexually Transmitted Infection?')
+                                            Sexually_Transmitted_Infection = st.selectbox('Select the answer about Sexually Transmitted Infection',
+                                                                         ('Select', 'Yes', 'No'))
+                                            Sexually_Transmitted_Infection_val = 0
+                                            Sexually_Transmitted_Infection_val_stat = False
+                                            if (Sexually_Transmitted_Infection == 'Select'):
+                                                st.empty()
+                                                Sexually_Transmitted_Infection_val_stat = False
+                                            elif (Sexually_Transmitted_Infection == 'Yes'):
+                                                Sexually_Transmitted_Infection_val = 1
+                                                st.write(
+                                                    f':male-office-worker: : Yes')
+                                                Sexually_Transmitted_Infection_val_stat = True
+                                            else:
+                                                Sexually_Transmitted_Infection_val = 0
+                                                st.write(
+                                                    f':male-office-worker: : No')
+                                                Sexually_Transmitted_Infection_val_stat = True
+
+                                            if (Sexually_Transmitted_Infection_val_stat):
+                                                monkey_pox_pred = monkey_pox_model.predict([[
+                                                    Systemic_Illness_val, Rectal_Pain_val,
+                                                    Sore_throat_val,
+                                                    Penile_Oedema_val, Oral_Lesions_val, Solitary_Lesion_val,
+                                                    Swollen_Tonsils_val,
+                                                    HIV_Infection_val, Sexually_Transmitted_Infection_val
+                                                ]])
+                                                if monkey_pox_pred == 1:
+                                                    st.error(
+                                                        ':robot_face: : You may have the Monkey Pox virus based on the provided data.')
+
+                                                elif monkey_pox_pred == 2:
+                                                    st.success(
+                                                        ':robot_face: : You may not have the Monkey Pox virus based on the provided data.')
+                                                else:
+                                                    st.error(
+                                                    ':robot_face: : Unsupported Data !')
+
 
     with right:
         st.empty()
