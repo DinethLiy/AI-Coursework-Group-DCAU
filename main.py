@@ -506,40 +506,24 @@ with st.container():
                             # PhysicalHealth
                             st.write(
                                 ':robot_face: : Amount of days in which the patient felt physical discomfort within the past 30 days')
-                            physical_health = st.selectbox('Select the answer about physical discomfort', ('Select', 'Yes', 'No'))
-                            physical_health_val = 0
-                            physical_health_val_stat = False
-                            if (physical_health == 'Select'):
+                            physical_health_val = st.number_input("Enter the number of days", min_value=0, max_value=30, value=0)
+                            if physical_health_val == 0:
                                 physical_health_val_stat = False
                                 st.empty()
-                            if (physical_health == 'Yes'):
+                            else:
                                 physical_health_val_stat = True
-                                physical_health_val = 1
-                                st.write(':male-office-worker: : Yes')
-                            if (physical_health == 'No'):
-                                physical_health_val_stat = True
-                                st.write(':male-office-worker: : No')
-                                physical_health_val = 0
+                                st.write(f':male-office-worker: : {physical_health_val} days')
                             if (physical_health_val_stat):
                                 # MentalHealth
                                 st.write(
                                     ":robot_face: : Amount of days in which the patient felt mental discomfort within the past 30 days")
-                                mental_health = st.selectbox('Select the answer about mental discomfort', ('Select', 'Yes', 'No'))
-
-                                mental_health_val = 0
-                                mental_health_val_stat = True
-                                if (mental_health == 'Select'):
+                                mental_health_val = st.number_input("Enter the days count", min_value=0, max_value=30, value=0)
+                                if mental_health_val == 0:
                                     mental_health_val_stat = False
                                     st.empty()
-                                if (mental_health == 'Yes'):
-                                    st.write(':male-office-worker: : Yes')
+                                else:
                                     mental_health_val_stat = True
-                                    mental_health_val = 1
-                                if (mental_health == 'No'):
-                                    st.write(':male-office-worker: : No')
-                                    mental_health_val_stat = True
-                                    mental_health_val = 0
-
+                                    st.write(f':male-office-worker: : {mental_health_val} days')
                                 if (mental_health_val_stat):
                                     # DiffWalking
                                     st.write(
