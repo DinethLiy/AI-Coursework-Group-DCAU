@@ -47,6 +47,9 @@ with open('models/monkey_pox_model.pickle', 'rb') as f:
 with open('models/lung_cancer_model.pkl', 'rb') as f:
     lung_cancer_model = pickle.load(f)
 
+with open('models/heart_disease_model.pickle', 'rb') as f:
+    heart_disease_model = pickle.load(f)
+
 with st.container():
     left, center, right = st.columns(3)
     with left:
@@ -435,7 +438,385 @@ with st.container():
                                                                                     else:
                                                                                         st.error(':robot_face: : Unsupported Data !')
         if (type == 'Heart disease'):
-            st.balloons()
+            st.write(':robot_face: : Enter the weight and the height to calculate the BMI')
+            weight = st.number_input("Enter your weight (in kilograms)", min_value=0.0, value=0.0, step=0.1)
+            height = st.number_input("Enter your height (in meters)", min_value=0.0, value=0.0, step=0.01)
+
+            # Calculate BMI
+            if height != 0:
+                bmi_val = weight / (height ** 2)
+            else:
+                bmi_val = 0.0
+            st.write(f':male-office-worker: : BMI is {bmi_val}')
+            if (bmi_val != 0):
+                st.write(':robot_face: : Tell us whether the you have smoked 100 cigarettes (20 packs) in your entire lifetime')
+                smoking = st.selectbox('Select the answer', ('Select', 'Yes', 'No'))
+                smoking_val = 0
+                smoking_val_stat = False
+                if (smoking == 'Select'):
+                    st.empty()
+                    smoking_val_stat = False
+                if (smoking == 'Yes'):
+                    smoking_val = 1
+                    smoking_val_stat = True
+                    st.write(':male-office-worker: : Yes')
+                if (smoking == 'No'):
+                    smoking_val = 0
+                    smoking_val_stat = True
+                    st.write(':male-office-worker: : No')
+
+                if (smoking_val_stat):
+                    st.write(':robot_face: : Tell us whether the you drinks alcohol at least 7 drinks per week')
+                    alcohol = st.selectbox('Select the answer about alcohol', ('Select', 'Yes', 'No'))
+                    alcohol_val = 0
+                    alcohol_val_stat = False
+                    if (alcohol == 'Select'):
+                        st.empty()
+                        alcohol_val_stat = False
+                    if (alcohol == "Yes"):
+                        alcohol_val = 1
+                        alcohol_val_stat = True
+                        st.write(':male-office-worker: : Yes')
+
+                    if (alcohol == "No"):
+                        alcohol_val = 0
+                        alcohol_val_stat = True
+                        st.write(':male-office-worker: : No')
+
+                    if (alcohol_val_stat):
+                        # patient had a stroke in their entire lifetime
+                        st.write(':robot_face: : Tell us whether the you had a stroke in your entire lifetime')
+                        stroke = st.selectbox('Select the answer about stroke', ('Select', 'Yes', 'No'))
+                        stroke_val = 0
+                        stroke_val_stat = False
+
+                        if (stroke == 'Select'):
+                            st.empty()
+                            alcohol_val_stat = False
+
+                        if (stroke == 'Yes'):
+                            stroke_val = 1
+                            stroke_val_stat = True
+                            st.write(':male-office-worker: : Yes')
+                        if (stroke == 'No'):
+                            stroke_val = 1
+                            stroke_val_stat = True
+                            st.write(':male-office-worker: : No')
+                        if (stroke_val_stat):
+                            # PhysicalHealth
+                            st.write(
+                                ':robot_face: : Amount of days in which the patient felt physical discomfort within the past 30 days')
+                            physical_health = st.selectbox('Select the answer about physical discomfort', ('Select', 'Yes', 'No'))
+                            physical_health_val = 0
+                            physical_health_val_stat = False
+                            if (physical_health == 'Select'):
+                                physical_health_val_stat = False
+                                st.empty()
+                            if (physical_health == 'Yes'):
+                                physical_health_val_stat = True
+                                physical_health_val = 1
+                                st.write(':male-office-worker: : Yes')
+                            if (physical_health == 'No'):
+                                physical_health_val_stat = True
+                                st.write(':male-office-worker: : No')
+                                physical_health_val = 0
+                            if (physical_health_val_stat):
+                                # MentalHealth
+                                st.write(
+                                    ":robot_face: : Amount of days in which the patient felt mental discomfort within the past 30 days")
+                                mental_health = st.selectbox('Select the answer about mental discomfort', ('Select', 'Yes', 'No'))
+
+                                mental_health_val = 0
+                                mental_health_val_stat = True
+                                if (mental_health == 'Select'):
+                                    mental_health_val_stat = False
+                                    st.empty()
+                                if (mental_health == 'Yes'):
+                                    st.write(':male-office-worker: : Yes')
+                                    mental_health_val_stat = True
+                                    mental_health_val = 1
+                                if (mental_health == 'No'):
+                                    st.write(':male-office-worker: : No')
+                                    mental_health_val_stat = True
+                                    mental_health_val = 0
+
+                                if (mental_health_val_stat):
+                                    # DiffWalking
+                                    st.write(
+                                        ":robot_face: : Tell us whether ypu has serious difficulty while walking or climbing stairs")
+                                    diff_walking = st.selectbox('Select the answer about difficulties', ('Select', 'Yes', 'No'))
+                                    diff_walking_val = 0
+                                    diff_walking_val_stat = False
+                                    if (diff_walking == 'Select'):
+                                        diff_walking_val_stat = False
+                                        st.empty()
+                                    if (diff_walking == 'Yes'):
+                                        st.write(':male-office-worker: : Yes')
+                                        diff_walking_val_stat = True
+                                        diff_walking_val_ = 1
+                                    if (diff_walking == 'No'):
+                                        st.write(':male-office-worker: : No')
+                                        diff_walking_val_stat = True
+                                        diff_walking_val_ = 0
+
+                                    if (diff_walking_val_stat):
+                                        st.write(':robot_face: : Select your gender?')
+                                        gender = st.selectbox('Select the gender', ('Select', 'Male', 'Female'))
+                                        gender_val = 0
+                                        gender_val_stat = False
+                                        if (gender == 'Select'):
+                                            st.empty()
+                                            gender_val_stat = False
+                                        if (gender == 'Male'):
+                                            gender_val = 0
+                                            gender_val_stat = True
+                                            st.write(':male-office-worker: : Male')
+                                        if (gender == 'Female'):
+                                            gender_val = 1
+                                            gender_val_stat = True
+                                            st.write(':male-office-worker: : Female')
+                                        if (gender_val_stat):
+                                            st.write(':robot_face: : Select your age group')
+                                            age_group = st.selectbox('Select the age group', (
+                                            'Select', '18-24', '25-29', '30-34', '35-39', '40-44', '45-49', '50-54',
+                                            '55-59', '60-64', '65-69', '75-79', '80 or older'))
+                                            if age_group == 'Select':
+                                                age_group_val_stat = False
+                                                st.empty()
+
+                                            if age_group == '18-24':
+                                                age_group_val = 1
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 18-24')
+                                            if age_group == '25-29':
+                                                age_group_val = 2
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 25-29')
+                                            if age_group == '30-34':
+                                                age_group_val = 3
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 30-34')
+                                            if age_group == '35-39':
+                                                age_group_val = 4
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 35-39')
+                                            if age_group == '40-44':
+                                                age_group_val = 5
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 40-44')
+                                            if age_group == '45-49':
+                                                age_group_val = 6
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 45-49')
+                                            if age_group == '50-54':
+                                                age_group_val = 7
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 50-54')
+                                            if age_group == '55-59':
+                                                age_group_val = 8
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 55-59')
+                                            if age_group == '60-64':
+                                                age_group_val = 9
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 60-64')
+                                            if age_group == '65-69':
+                                                age_group_val = 10
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 65-69')
+                                            if age_group == '75-79':
+                                                age_group_val = 11
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 75-79')
+                                            if age_group == '80 or older':
+                                                age_group_val = 12
+                                                age_group_val_stat = True
+                                                st.write(':male-office-worker: : Age group is 80 or older')
+                                            if (age_group_val_stat):
+                                                diabetic = ":robot_face: : Have you been diagnosed with diabetes?"
+                                                diabetic_status = st.selectbox('Select the answer about diabetes',
+                                                                               ('Select', 'Yes', 'No'))
+
+                                                diabetic_val = 0
+                                                diabetic_val_stat = True
+
+                                                if diabetic_status == 'Select':
+                                                    diabetic_val_stat = False
+                                                    st.empty()
+
+                                                if diabetic_status == 'Yes':
+                                                    st.write(':male-office-worker: : Yes')
+                                                    diabetic_val_stat = True
+                                                    diabetic_val = 1
+
+                                                if diabetic_status == 'No':
+                                                    st.write(':male-office-worker: : No')
+                                                    diabetic_val_stat = True
+                                                    diabetic_val = 0
+
+                                                if (diabetic_val_stat):
+                                                    st.write(
+                                                        ':robot_face: : Tell us you did any physical exercise (other than their daily routine) in the past 30 days')
+                                                    exercise_status = st.selectbox('Select the answer about physical exercise',
+                                                                                   ('Select', 'Yes', 'No'))
+
+                                                    exercise_val = 0
+                                                    exercise_val_stat = True
+
+                                                    if exercise_status == 'Select':
+                                                        exercise_val_stat = False
+                                                        st.empty()
+
+                                                    if exercise_status == 'Yes':
+                                                        st.write(':male-office-worker: : Yes')
+                                                        exercise_val_stat = True
+                                                        exercise_val = 1
+
+                                                    if exercise_status == 'No':
+                                                        st.write(':male-office-worker: : No')
+                                                        exercise_val_stat = True
+                                                        exercise_val = 0
+                                                    if (exercise_val_stat):
+                                                        st.write(":robot_face: : Please select your general health status:")
+                                                        gen_health_status = st.selectbox(
+                                                            'Select your general health status',
+                                                            ('Select','Poor', 'Fair', 'Good', 'Very good', 'Excellent'))
+
+                                                        gen_health_val = 0
+                                                        gen_health_val_stat = True
+
+                                                        if gen_health_status == 'Select':
+
+                                                            gen_health_val_stat = False
+
+                                                        if gen_health_status == 'Poor':
+                                                            st.write(':male-office-worker: : Poor')
+                                                            gen_health_val_stat = True
+                                                            gen_health_val = 0
+
+                                                        if gen_health_status == 'Fair':
+                                                            st.write(':male-office-worker: : Fair')
+                                                            gen_health_val_stat = True
+                                                            gen_health_val = 1
+
+                                                        if gen_health_status == 'Good':
+                                                            st.write(':male-office-worker: : Good')
+                                                            gen_health_val_stat = True
+                                                            gen_health_val = 2
+
+                                                        if gen_health_status == 'Very good':
+                                                            st.write(':male-office-worker: : Very good')
+                                                            gen_health_val_stat = True
+                                                            gen_health_val = 3
+
+                                                        if gen_health_status == 'Excellent':
+                                                            st.write(':male-office-worker: : Excellent')
+                                                            gen_health_val_stat = True
+                                                            gen_health_val = 4
+
+                                                        if gen_health_val_stat:
+                                                            st.write(":robot_face: : How many hours of sleep do you get within 24 hours?")
+                                                            sleep_time_val = st.selectbox(
+                                                                "Select the number of hours of sleep", list(range(13)))
+
+                                                            if (sleep_time_val == 0):
+                                                                sleep_time_val_stat = False
+                                                            if (sleep_time_val > 0):
+                                                                st.write(f':male-office-worker: : {sleep_time_val} hours')
+                                                                st.write(":robot_face: : Do you have asthma?")
+                                                                asthma_status = st.selectbox('Select the answer about asthma',
+                                                                                             ('Select', 'Yes', 'No'))
+
+                                                                asthma_val = 0
+                                                                asthma_val_stat = True
+
+                                                                if asthma_status == 'Select':
+                                                                    asthma_val_stat = False
+                                                                    st.empty()
+
+                                                                if asthma_status == 'Yes':
+                                                                    st.write(':male-office-worker: : Yes')
+                                                                    asthma_val_stat = True
+                                                                    asthma_val = 1
+
+                                                                if asthma_status == 'No':
+                                                                    st.write(':male-office-worker: : No')
+                                                                    asthma_val_stat = True
+                                                                    asthma_val = 0
+
+                                                                if (asthma_val_stat):
+                                                                    st.write(
+                                                                        ":robot_face: : Do you have any disease related to the kidney?")
+                                                                    kidney_disease = st.selectbox(
+                                                                        'Select the answer about kidney disease',
+                                                                        ('Select', 'Yes', 'No'))
+
+                                                                    kidney_disease_val = 0
+                                                                    kidney_disease_val_stat = True
+
+                                                                    if kidney_disease == 'Select':
+                                                                        kidney_disease_val_stat = False
+                                                                        st.empty()
+
+                                                                    if kidney_disease == 'Yes':
+                                                                        st.write(':male-office-worker: : Yes')
+                                                                        kidney_disease_val_stat = True
+                                                                        kidney_disease_val = 1
+
+                                                                    if kidney_disease == 'No':
+                                                                        st.write(':male-office-worker: : No')
+                                                                        kidney_disease_val_stat = True
+                                                                        kidney_disease_val = 0
+                                                                    if (kidney_disease_val_stat):
+                                                                        st.write(
+                                                                            ":robot_face: : Have you been diagnosed with skin cancer?")
+                                                                        skin_cancer_status = st.selectbox(
+                                                                            'Select the answer about skin cancer',
+                                                                            ('Select', 'Yes', 'No'))
+
+                                                                        skin_cancer_val = 0
+                                                                        skin_cancer_val_stat = True
+
+                                                                        if skin_cancer_status == 'Select':
+                                                                            skin_cancer_val_stat = False
+                                                                            st.empty()
+
+                                                                        if skin_cancer_status == 'Yes':
+                                                                            st.write(':male-office-worker: : Yes')
+                                                                            skin_cancer_val_stat = True
+                                                                            skin_cancer_val = 1
+
+                                                                        if skin_cancer_status == 'No':
+                                                                            st.write(':male-office-worker: : No')
+                                                                            skin_cancer_val_stat = True
+                                                                            skin_cancer_val = 0
+                                                                        if (skin_cancer_val_stat):
+                                                                            heart_disease_data = [
+                                                                                bmi_val,
+                                                                                smoking_val,
+                                                                                alcohol_val,
+                                                                                stroke_val,
+                                                                                physical_health_val,
+                                                                                mental_health_val,
+                                                                                diff_walking_val,
+                                                                                gender_val,
+                                                                                age_group_val,
+                                                                                diabetic_val,
+                                                                                exercise_val,
+                                                                                gen_health_val,
+                                                                                sleep_time_val,
+                                                                                asthma_val,
+                                                                                kidney_disease_val,
+                                                                                skin_cancer_val]
+                                                                            heart_disease_pred = heart_disease_model.predict(
+                                                                                [heart_disease_data])
+
+                                                                            if heart_disease_pred == 1:
+                                                                                st.error(
+                                                                                    ':robot_face: : You have a high chance of getting a heart disease in the future. Please consult with your doctor on how to proceed.You have a high chance of getting a heart disease in the future. Please consult with your doctor on how to proceed.')
+                                                                            else:
+                                                                                st.success(
+                                                                                    ':robot_face: : You have a very low chance of getting a heart disease in the future!')
 
         if (type == 'Lung Cancer'):
             if (type == 'Lung Cancer'):
