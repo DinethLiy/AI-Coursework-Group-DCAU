@@ -7,7 +7,7 @@ import sklearn
 
 xIcon = Image.open("images/Xicon.ico")
 
-st.set_page_config(page_title="iCare", page_icon = xIcon, layout="wide")
+st.set_page_config(page_title="iHealth", page_icon = xIcon, layout="wide")
 
 def load_lottieurl(url):
     r = requests.get(url)
