@@ -20,7 +20,7 @@
     ```
 - Restore the required packages using requirements.txt file. (use following command in the cmd to restore)
     ```
-    pip install -r requirements.txt
+    pip install -r requirments.txt
     ```
 
 ## 🔥 How to run the system
